@@ -3,6 +3,7 @@ package com.example.android2.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.android2.R
+import com.example.android2.view.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
