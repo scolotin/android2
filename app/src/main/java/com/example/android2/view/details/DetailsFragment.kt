@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.android2.R
 import com.example.android2.databinding.FragmentDetailedBinding
 import com.example.android2.model.Film
+import com.google.android.material.snackbar.Snackbar
 
 class DetailsFragment : Fragment() {
     private lateinit var viewBinding: FragmentDetailedBinding
@@ -29,15 +30,24 @@ class DetailsFragment : Fragment() {
             viewBinding.rate.text = it.rate.toString()
             viewBinding.description.text = it.description
         }
+
+        view.createAndShowSnackbar(R.string.app_name)
     }
 
     companion object {
         const val BUNDLE_EXTRA = "film"
 
-        fun newInstance(bundle: Bundle): DetailsFragment {
-            val fragment = DetailsFragment()
-            fragment.arguments = bundle
-            return fragment
+        fun newInstance(bundle: Bundle) = DetailsFragment().apply {
+            arguments = bundle
         }
     }
+}
+
+fun View.createAndShowSnackbar(resId: Int, length: Int = Snackbar.LENGTH_SHORT) {
+    Snackbar.make(this, resId, length).show()
+}
+
+fun View.createAndShowActionSnackbar(text: String, actionText: String, action: (View) -> Unit,
+                       length: Int = Snackbar.LENGTH_INDEFINITE) {
+    Snackbar.make(this, text, length).setAction(actionText, action).show()
 }

@@ -23,8 +23,9 @@ class MainFragmentAdapter(private var onItemViewClickListener: OnItemViewClickLi
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainFragmentViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        inflater.inflate(R.layout.item_fragment_main, parent, false)
+        val inflater = LayoutInflater.from(parent.context).apply {
+            inflate(R.layout.item_fragment_main, parent, false)
+        }
         viewBinding = ItemFragmentMainBinding.inflate(inflater, parent, false)
         return MainFragmentViewHolder(viewBinding)
     }

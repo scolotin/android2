@@ -10,7 +10,7 @@ class MainFragmentViewModel(private val repository: Repository = RepositoryImpl(
 
     fun getFilmListLiveData() = filmListLiveData
 
-    fun getFilmList() {
-        filmListLiveData.postValue(MainFragmentVMContainer(repository.getFilmListFromServer()))
+    fun getFilmList() = filmListLiveData.apply {
+        postValue(MainFragmentVMContainer(repository.getFilmListFromServer()))
     }
 }
