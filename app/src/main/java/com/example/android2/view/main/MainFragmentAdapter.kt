@@ -1,4 +1,4 @@
-package com.example.android2.view
+package com.example.android2.view.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android2.R
 import com.example.android2.databinding.ItemFragmentMainBinding
 import com.example.android2.model.Film
+import com.example.android2.model.OnItemViewClickListener
 
-class MainFragmentAdapter : RecyclerView.Adapter<MainFragmentViewHolder>(){
+class MainFragmentAdapter(private var onItemViewClickListener: OnItemViewClickListener?) : RecyclerView.Adapter<MainFragmentViewHolder>(){
     private lateinit var viewBinding: ItemFragmentMainBinding
 
     private var filmList: List<Film> = listOf()
@@ -15,6 +16,10 @@ class MainFragmentAdapter : RecyclerView.Adapter<MainFragmentViewHolder>(){
     fun setFilmList(filmList: List<Film>) {
         this.filmList = filmList
         notifyDataSetChanged()
+    }
+
+    fun removeListener() {
+        onItemViewClickListener = null
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainFragmentViewHolder {
@@ -30,6 +35,9 @@ class MainFragmentAdapter : RecyclerView.Adapter<MainFragmentViewHolder>(){
         viewBinding.filmTitle.text = filmList[position].name
         viewBinding.year.text = filmList[position].year.toString()
         viewBinding.rate.text = filmList[position].rate.toString()
+        setOnClickListener {
+            onItemViewClickListener?.onItemViewClick(filmList[position])
+        }
     }
 }
 
