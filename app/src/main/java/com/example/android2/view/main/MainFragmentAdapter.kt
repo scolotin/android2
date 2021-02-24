@@ -1,14 +1,17 @@
 package com.example.android2.view.main
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android2.R
 import com.example.android2.databinding.ItemFragmentMainBinding
 import com.example.android2.model.Film
 import com.example.android2.model.OnItemViewClickListener
+import com.squareup.picasso.Picasso
 
-class MainFragmentAdapter(private var onItemViewClickListener: OnItemViewClickListener?) : RecyclerView.Adapter<MainFragmentViewHolder>(){
+class MainFragmentAdapter(private var onItemViewClickListener: OnItemViewClickListener?) : RecyclerView.Adapter<MainFragmentAdapter.MainFragmentViewHolder>(){
+
     private lateinit var viewBinding: ItemFragmentMainBinding
 
     private var filmList: List<Film> = listOf()
@@ -27,19 +30,22 @@ class MainFragmentAdapter(private var onItemViewClickListener: OnItemViewClickLi
             inflate(R.layout.item_fragment_main, parent, false)
         }
         viewBinding = ItemFragmentMainBinding.inflate(inflater, parent, false)
-        return MainFragmentViewHolder(viewBinding)
+        return MainFragmentViewHolder(viewBinding.root)
     }
 
     override fun getItemCount(): Int = filmList.size
 
-    override fun onBindViewHolder(holder: MainFragmentViewHolder, position: Int) = holder.itemView.run {
+    override fun onBindViewHolder(holder: MainFragmentViewHolder, position: Int) {
         viewBinding.filmTitle.text = filmList[position].title
         viewBinding.year.text = filmList[position].release_date
         viewBinding.rate.text = filmList[position].vote_average.toString()
-        setOnClickListener {
+        Picasso.get().load("https://image.tmdb.org/t/p/w780${filmList[position].poster_path}")
+            .into(viewBinding.poster)
+
+        holder.itemView.setOnClickListener {
             onItemViewClickListener?.onItemViewClick(filmList[position])
         }
     }
-}
 
-class MainFragmentViewHolder(itemFragmentMainBinding: ItemFragmentMainBinding) : RecyclerView.ViewHolder(itemFragmentMainBinding.root)
+    class MainFragmentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+}
