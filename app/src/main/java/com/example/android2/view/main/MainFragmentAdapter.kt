@@ -33,9 +33,9 @@ class MainFragmentAdapter(private var onItemViewClickListener: OnItemViewClickLi
     override fun getItemCount(): Int = filmList.size
 
     override fun onBindViewHolder(holder: MainFragmentViewHolder, position: Int) = holder.itemView.run {
-        viewBinding.filmTitle.text = filmList[position].name
-        viewBinding.year.text = filmList[position].year.toString()
-        viewBinding.rate.text = filmList[position].rate.toString()
+        viewBinding.filmTitle.text = filmList[position].title
+        viewBinding.year.text = filmList[position].release_date
+        viewBinding.rate.text = filmList[position].vote_average.toString()
         setOnClickListener {
             onItemViewClickListener?.onItemViewClick(filmList[position])
         }
