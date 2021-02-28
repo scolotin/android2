@@ -10,12 +10,18 @@ import com.example.android2.databinding.FragmentDetailedBinding
 import com.example.android2.model.Film
 
 class DetailsFragment : Fragment() {
-    private lateinit var viewBinding: FragmentDetailedBinding
+    private var _viewBinding: FragmentDetailedBinding? = null
+    private val viewBinding get() = _viewBinding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         inflater.inflate(R.layout.fragment_detailed, container, false)
-        viewBinding = FragmentDetailedBinding.inflate(inflater)
+        _viewBinding = FragmentDetailedBinding.inflate(inflater)
         return viewBinding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _viewBinding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
