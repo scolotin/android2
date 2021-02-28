@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">Android2</string>
     <string name="connection_warning_msg">Please check connection to internet</string>
+    <string name="err_request_msg">Empty error</string>
 </resources>

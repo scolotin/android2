@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.example.android2.R
 import com.example.android2.model.*
 import com.google.gson.Gson
 import java.io.BufferedReader
@@ -45,7 +46,7 @@ class MainService(name: String? = "MainService") : IntentService(name) {
                     )
                 onResponse(filmDTO)
             } catch (e: Exception) {
-                onErrorRequest(e.message ?: "Empty error")
+                onErrorRequest(e.message ?: getString(R.string.err_request_msg))
             } finally {
                 urlConnection.disconnect()
             }
