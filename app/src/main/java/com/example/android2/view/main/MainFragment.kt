@@ -16,16 +16,17 @@ import com.example.android2.viewmodel.MainFragmentViewModel
 
 class MainFragment : Fragment() {
     private lateinit var viewBinding: FragmentMainBinding
-    private lateinit var viewModel: MainFragmentViewModel
+    private val viewModel: MainFragmentViewModel by lazy {
+        ViewModelProvider(this).get(MainFragmentViewModel::class.java)
+    }
 
     private val previewAdapter = MainFragmentAdapter(object : OnItemViewClickListener {
         override fun onItemViewClick(film: Film) {
-            val manager = activity?.supportFragmentManager
-            if (manager != null) {
-                val bundle = Bundle()
-                bundle.putParcelable(DetailsFragment.BUNDLE_EXTRA, film)
-                manager.beginTransaction()
-                    .add(R.id.container, DetailsFragment.newInstance(bundle))
+            activity?.supportFragmentManager?.apply {
+                beginTransaction()
+                    .add(R.id.container, DetailsFragment.newInstance(Bundle().apply {
+                        putParcelable(DetailsFragment.BUNDLE_EXTRA, film)
+                    }))
                     .addToBackStack("")
                     .commitAllowingStateLoss()
             }
@@ -42,9 +43,10 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.preview.adapter = previewAdapter
 
-        viewModel = ViewModelProvider(this).get(MainFragmentViewModel::class.java)
-        viewModel.getFilmListLiveData().observe(viewLifecycleOwner, { renderFilmList(it) })
-        viewModel.getFilmList()
+        viewModel.run {
+            getFilmListLiveData().observe(viewLifecycleOwner, { renderFilmList(it) })
+            getFilmList()
+        }
     }
 
     override fun onDestroy() {
