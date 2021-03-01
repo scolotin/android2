@@ -6,16 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.android2.R
-import com.example.android2.databinding.FragmentDetailedBinding
+import com.example.android2.databinding.FragmentDetailsBinding
 import com.example.android2.model.Film
 
 class DetailsFragment : Fragment() {
-    private var _viewBinding: FragmentDetailedBinding? = null
+    private var _viewBinding: FragmentDetailsBinding? = null
     private val viewBinding get() = _viewBinding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        inflater.inflate(R.layout.fragment_detailed, container, false)
-        _viewBinding = FragmentDetailedBinding.inflate(inflater)
+        inflater.inflate(R.layout.fragment_details, container, false)
+        _viewBinding = FragmentDetailsBinding.inflate(inflater)
         return viewBinding.root
     }
 
