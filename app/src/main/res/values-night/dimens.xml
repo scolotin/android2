@@ -11,4 +11,5 @@
     <dimen name="rate_text_size">18sp</dimen>
     <dimen name="genre_text_size">18sp</dimen>
     <dimen name="metadata_text_size">18sp</dimen>
+    <dimen name="contacts_padding">16dp</dimen>
 </resources>

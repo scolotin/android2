@@ -7,4 +7,9 @@
         android:orderInCategory="1"
         android:title="@string/settings"/>
 
+    <item
+        android:id="@+id/action_contacts"
+        android:orderInCategory="2"
+        android:title="@string/contacts_msg"/>
+
 </menu>

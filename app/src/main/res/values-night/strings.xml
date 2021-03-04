@@ -7,4 +7,8 @@
     <string name="nav_drawer_open">Open</string>
     <string name="nav_drawer_close">Close</string>
     <string name="adult_msg">Adult content</string>
+    <string name="contacts_msg">Contacts</string>
+    <string name="contacts_negative_msg">Close</string>
+    <string name="contacts_permission_msg">No permission to read contacts</string>
+    <string name="contacts_request_title_msg">Contacts</string>
 </resources>

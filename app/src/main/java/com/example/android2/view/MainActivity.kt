@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.android2.R
 import com.example.android2.databinding.ActivityMainBinding
+import com.example.android2.view.contacts.ContactsFragment
 import com.example.android2.view.main.MainFragment
 import com.example.android2.view.settings.SettingsFragment
 import com.google.android.material.navigation.NavigationView
@@ -62,6 +63,13 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.container, SettingsFragment.newInstance())
+                    .addToBackStack("")
+                    .commitAllowingStateLoss()
+                true
+            }
+            R.id.action_contacts -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, ContactsFragment.newInstance())
                     .addToBackStack("")
                     .commitAllowingStateLoss()
                 true
