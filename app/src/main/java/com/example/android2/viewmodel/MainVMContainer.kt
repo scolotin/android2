@@ -2,6 +2,6 @@ package com.example.android2.viewmodel
 
 import com.example.android2.model.Film
 
-data class MainFragmentVMContainer(
+data class MainVMContainer(
     val filmList: ArrayList<Film>
 )

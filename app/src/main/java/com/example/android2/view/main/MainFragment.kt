@@ -10,19 +10,21 @@ import com.example.android2.R
 import com.example.android2.databinding.FragmentMainBinding
 import com.example.android2.model.*
 import com.example.android2.view.details.DetailsFragment
-import com.example.android2.viewmodel.MainFragmentVMContainer
-import com.example.android2.viewmodel.MainFragmentViewModel
+import com.example.android2.viewmodel.MainVMContainer
+import com.example.android2.viewmodel.MainViewModel
 
 class MainFragment : Fragment() {
+
     private var _viewBinding: FragmentMainBinding? = null
     private val viewBinding get() = _viewBinding!!
 
-    private val viewModel: MainFragmentViewModel by lazy {
-        ViewModelProvider(this).get(MainFragmentViewModel::class.java)
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
     private val previewAdapter = MainFragmentAdapter(object : OnItemViewClickListener {
         override fun onItemViewClick(film: Film) {
+            viewModel.saveFilmToDB(film)
             activity?.supportFragmentManager?.apply {
                 beginTransaction()
                     .add(R.id.container, DetailsFragment.newInstance(Bundle().apply {
@@ -62,8 +64,8 @@ class MainFragment : Fragment() {
         super.onDestroy()
     }
 
-    private fun renderFilmList(mainFragmentContainer: MainFragmentVMContainer) {
-        previewAdapter.setFilmList(mainFragmentContainer.filmList)
+    private fun renderFilmList(mainContainer: MainVMContainer) {
+        previewAdapter.setFilmList(mainContainer.filmList)
     }
 
     companion object {

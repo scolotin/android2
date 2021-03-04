@@ -7,4 +7,6 @@
     <string name="nav_drawer_open">Open</string>
     <string name="nav_drawer_close">Close</string>
     <string name="adult_msg">Adult content</string>
+    <string name="History">History</string>
+    <string name="add_note_msg">Add note</string>
 </resources>

@@ -10,7 +10,8 @@ data class Film(
     val release_date: String,
     val genre: String,
     val vote_average: Float,
-    val overview: String
+    val overview: String,
+    var note: String?
 ) : Parcelable
 
 data class FilmDTO(

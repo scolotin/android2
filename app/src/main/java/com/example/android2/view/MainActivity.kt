@@ -11,8 +11,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.android2.R
 import com.example.android2.databinding.ActivityMainBinding
+import com.example.android2.view.history.HistoryFragment
 import com.example.android2.view.main.MainFragment
 import com.example.android2.view.settings.SettingsFragment
 import com.google.android.material.navigation.NavigationView
@@ -60,10 +63,11 @@ class MainActivity : AppCompatActivity() {
     private fun navigateFragment(id: Int): Boolean {
         return when (id) {
             R.id.action_settings -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, SettingsFragment.newInstance())
-                    .addToBackStack("")
-                    .commitAllowingStateLoss()
+                supportFragmentManager.replaceFragment(R.id.container, SettingsFragment.newInstance())
+                true
+            }
+            R.id.action_history -> {
+                supportFragmentManager.replaceFragment(R.id.container, HistoryFragment.newInstance())
                 true
             }
             else -> false
@@ -77,4 +81,11 @@ fun Activity.showSnackbar(text: String, length: Int = Snackbar.LENGTH_INDEFINITE
     rootView.let {
         Snackbar.make(it, text, length).show()
     }
+}
+
+fun FragmentManager.replaceFragment(resId: Int, fragment: Fragment) {
+    beginTransaction()
+        .replace(resId, fragment)
+        .addToBackStack("")
+        .commitAllowingStateLoss()
 }
