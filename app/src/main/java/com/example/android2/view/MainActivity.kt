@@ -13,7 +13,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.android2.R
 import com.example.android2.databinding.ActivityMainBinding
+import com.example.android2.view.actors.ActorsFragment
 import com.example.android2.view.main.MainFragment
+import com.example.android2.view.maps.MapsFragment
 import com.example.android2.view.settings.SettingsFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -62,6 +64,13 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.container, SettingsFragment.newInstance())
+                    .addToBackStack("")
+                    .commitAllowingStateLoss()
+                true
+            }
+            R.id.action_actors -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, ActorsFragment.newInstance())
                     .addToBackStack("")
                     .commitAllowingStateLoss()
                 true

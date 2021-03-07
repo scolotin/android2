@@ -1,8 +1,13 @@
 package com.example.android2.utils
 
-import com.example.android2.model.Film
-import com.example.android2.model.FilmDTO
+import com.example.android2.model.*
 
-fun convertDtoToModel(filmDTO: FilmDTO?): ArrayList<Film> {
-    return filmDTO?.results!!
+fun convertFilmDtoToModel(filmDTO: FilmDTO?): ArrayList<Film> = filmDTO?.results!!
+
+fun convertActorDtoToModel(actorDTO: ActorDTO?): List<Actor> = actorDTO?.results!!
+
+fun convertActorDetailsDtoToModel(actorDetailsDTO: ActorDetailsDTO?) : ActorDetails {
+    return actorDetailsDTO?.run {
+        ActorDetails(this.name, this.place_of_birth)
+    }!!
 }

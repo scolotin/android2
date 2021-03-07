@@ -1,5 +1,6 @@
 package com.example.android2.model
 
+const val BASE_URL = "https://api.themoviedb.org/"
 const val API_KEY = "74c34ef78210a9bc3840d6c543b19fa4"
 const val MAIN_INTENT_FILTER = "MAIN INTENT FILTER"
 const val MAIN_LOAD_RESULT_EXTRA = "LOAD RESULT"

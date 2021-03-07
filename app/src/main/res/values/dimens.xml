@@ -11,4 +11,7 @@
     <dimen name="rate_text_size">18sp</dimen>
     <dimen name="genre_text_size">18sp</dimen>
     <dimen name="metadata_text_size">18sp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="actors_margin">16dp</dimen>
+    <dimen name="actor_name_text_size">18sp</dimen>
 </resources>

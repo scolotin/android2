@@ -7,4 +7,5 @@
     <string name="nav_drawer_open">Open</string>
     <string name="nav_drawer_close">Close</string>
     <string name="adult_msg">Adult content</string>
+    <string name="actors">Actors</string>
 </resources>
